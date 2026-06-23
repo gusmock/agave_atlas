@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: agave-obs
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: bash scripts/start_render.sh
+    healthCheckPath: /health
+    disk:
+      name: agave-obs-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: AGAVE_DEBUG
+        value: "false"
+      - key: AGAVE_DB_PATH
+        value: /var/data/db/agave_obs.sqlite3
+      - key: AGAVE_UPLOAD_DIR
+        value: /var/data/uploads/documents
+      - key: AGAVE_ADMIN_USER
+        value: admin
+      - key: AGAVE_ADMIN_PASSWORD
+        sync: false
+      - key: AGAVE_SECRET_KEY
+        generateValue: true
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash-lite

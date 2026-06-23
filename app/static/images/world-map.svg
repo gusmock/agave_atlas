@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" role="img" aria-labelledby="title desc">
+  <title id="title">Mapa mundi</title>
+  <desc id="desc">Mapa mundi vetorial para visualizacao dos escritorios de patente.</desc>
+  <defs>
+    <linearGradient id="ocean" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#eef7f4"/>
+      <stop offset="100%" stop-color="#dcece6"/>
+    </linearGradient>
+    <filter id="coastShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#90a99d" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <rect width="1000" height="500" fill="url(#ocean)"/>
+  <g fill="none" stroke="#bfd5cc" stroke-width="1">
+    <path d="M0 125h1000M0 250h1000M0 375h1000"/>
+    <path d="M125 0v500M250 0v500M375 0v500M500 0v500M625 0v500M750 0v500M875 0v500"/>
+  </g>
+  <g fill="#c7d9ce" stroke="#8aa493" stroke-width="2.2" stroke-linejoin="round" filter="url(#coastShadow)">
+    <path d="M74 104
+             L104 85 L147 74 L189 80 L220 96 L240 118
+             L263 125 L278 145 L288 177 L274 196 L280 216
+             L259 229 L247 248 L226 254 L210 271 L180 281
+             L154 280 L138 262 L116 254 L102 236 L92 212
+             L96 187 L82 164 L68 149 L66 123 Z"/>
+    <path d="M225 290
+             L246 302 L264 325 L271 350 L266 381 L253 406
+             L239 438 L219 465 L204 451 L210 426 L199 402
+             L190 378 L192 346 L205 320 Z"/>
+    <path d="M314 58
+             L333 47 L356 50 L370 63 L362 81 L338 83 L321 75 Z"/>
+    <path d="M432 122
+             L452 108 L486 104 L515 114 L533 129 L536 151
+             L523 163 L513 181 L518 200 L507 219 L489 226
+             L474 245 L452 250 L435 236 L420 219 L418 194
+             L410 174 L417 149 Z"/>
+    <path d="M438 247
+             L457 260 L474 286 L484 319 L479 351 L462 389
+             L448 420 L434 428 L423 404 L425 371 L416 345
+             L410 319 L415 287 L426 263 Z"/>
+    <path d="M493 92
+             L532 77 L589 75 L640 83 L689 92 L734 100
+             L782 116 L836 130 L882 146 L913 160 L921 175
+             L901 189 L866 188 L842 183 L818 195 L792 206
+             L764 209 L741 201 L715 188 L700 183 L685 191
+             L668 200 L645 198 L617 201 L592 209 L566 213
+             L541 204 L523 188 L512 169 L496 157 L484 138 Z"/>
+    <path d="M721 220
+             L739 211 L761 214 L777 224 L786 240 L781 256
+             L766 261 L747 254 L731 241 Z"/>
+    <path d="M785 301
+             L814 292 L854 304 L883 320 L904 343 L907 367
+             L888 383 L855 387 L826 378 L801 364 L786 343 Z"/>
+    <path d="M631 215
+             L645 209 L658 214 L663 225 L652 232 L638 228 Z"/>
+    <path d="M612 204
+             L619 198 L627 199 L629 207 L620 210 Z"/>
+  </g>
+  <g fill="none" stroke="#ffffff" stroke-opacity="0.65" stroke-width="1.5">
+    <path d="M0 250h1000"/>
+    <path d="M500 0v500"/>
+  </g>
+</svg>

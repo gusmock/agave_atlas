@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Atlas e Observatório do Agave</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brandLockup">
+        <img class="unicampLogo" src="/static/images/unicamp-logo.svg" alt="Logotipo da Unicamp">
+        <div>
+          <p class="eyebrow">Base científica e tecnológica</p>
+          <h1>Atlas e Observatório do Agave</h1>
+        </div>
+      </div>
+      <div class="session">
+        <span id="sessionLabel">{{ username or "Visitante" }}</span>
+        <button id="logoutButton" class="ghost hidden" type="button">Sair</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <img src="/static/images/agave-hero.png" alt="Agave em campo experimental">
+        <div class="heroOverlay">
+          <div class="metric"><span id="metricTotal">0</span><small>documentos</small></div>
+          <div class="metric"><span id="metricYears">-</span><small>janela temporal</small></div>
+          <div class="metric"><span id="metricPending">0</span><small>famílias pendentes</small></div>
+          <div class="metric"><span id="metricAlive">0</span><small>famílias vivas</small></div>
+        </div>
+      </section>
+
+      <section class="workbench">
+        <aside class="filters">
+          <label>
+            Busca
+            <input id="q" type="search" placeholder="título, titular, inventor, CPC">
+          </label>
+          <label>
+            Escritório
+            <select id="office"><option value="">Todos</option></select>
+          </label>
+          <label>
+            Ano
+            <select id="year"><option value="">Todos</option></select>
+          </label>
+          <label>
+            Status
+            <select id="status"><option value="">Todos</option></select>
+          </label>
+          <label>
+            Eixo tecnológico
+            <select id="category"><option value="">Todos</option></select>
+          </label>
+          <button id="clearFilters" type="button">Limpar filtros</button>
+
+          <div class="loginBox" id="loginBox">
+            <h2>Acesso</h2>
+            <form id="loginForm">
+              <label>Usuário <input name="username" autocomplete="username"></label>
+              <label>Senha <input name="password" type="password" autocomplete="current-password"></label>
+              <button type="submit">Entrar</button>
+            </form>
+          </div>
+
+          <div class="uploadBox hidden" id="uploadBox">
+            <h2>Adicionar documento</h2>
+            <form id="uploadForm">
+              <input name="document" type="file" accept=".pdf,.doc,.docx,.txt,.md,.csv">
+              <button type="submit">Extrair com Gemini</button>
+            </form>
+            <form id="spreadsheetForm">
+              <input name="spreadsheet" type="file" accept=".xlsm,.xlsx,.csv">
+              <button type="submit">Importar planilha</button>
+            </form>
+            <p id="uploadStatus"></p>
+          </div>
+        </aside>
+
+        <section class="content">
+          <div class="tabs" role="tablist">
+            <button class="tab active" data-view="atlas" type="button">Atlas</button>
+            <button class="tab" data-view="documents" type="button">Documentos</button>
+            <button class="tab" data-view="intelligence" type="button">Inteligência</button>
+            <button class="tab" data-view="about" type="button">Sobre</button>
+          </div>
+
+          <section id="view-atlas" class="view active">
+            <div class="atlasFeatureGrid">
+              <section>
+                <h2>Mapa mundial das tecnologias</h2>
+                <div class="worldMapShell">
+                  <div class="worldMapStage" aria-label="Mapa mundial por escritório de patente">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/World_location_map.svg" alt="Mapa mundi">
+                    <div id="worldMapMarkers" class="worldMapMarkers"></div>
+                  </div>
+                  <div id="worldMapLegend" class="worldMapLegend"></div>
+                </div>
+              </section>
+              <section>
+                <h2>Nuvem de palavras-chave</h2>
+                <div id="keywordCloud" class="keywordCloud"></div>
+              </section>
+            </div>
+
+            <div class="atlasGrid">
+              <div>
+                <h2>Mapa tecnológico</h2>
+                <div id="categoryBars" class="bars"></div>
+              </div>
+              <div>
+                <h2>Escritórios</h2>
+                <div id="officeBars" class="bars compact"></div>
+              </div>
+            </div>
+            <div class="timeline">
+              <h2>Linha do tempo</h2>
+              <div id="yearBars" class="yearBars"></div>
+            </div>
+          </section>
+
+          <section id="view-documents" class="view">
+            <div class="resultHeader">
+              <h2>Documentos analisados</h2>
+              <span id="resultCount">0 registros</span>
+            </div>
+            <div id="documents" class="documents"></div>
+          </section>
+
+          <section id="view-intelligence" class="view">
+            <div class="intelGrid">
+              <div>
+                <h2>Titulares recorrentes</h2>
+                <div id="assigneeBars" class="bars"></div>
+              </div>
+              <div>
+                <h2>Síntese didática</h2>
+                <div id="insightPanel" class="insightPanel"></div>
+              </div>
+            </div>
+          </section>
+
+          <section id="view-about" class="view">
+            <div class="aboutGrid">
+              <article class="profileCard">
+                <div class="profilePhoto" aria-label="Espaço para foto de Gustavo Mockaitis"></div>
+                <div>
+                  <p class="eyebrow">Desenvolvedor e orientador do trabalho</p>
+                  <h2>Gustavo Mockaitis</h2>
+                  <dl class="profileFields">
+                    <div><dt>Instituição</dt><dd>&nbsp;</dd></div>
+                    <div><dt>Unidade / Programa</dt><dd>&nbsp;</dd></div>
+                    <div><dt>E-mail</dt><dd>&nbsp;</dd></div>
+                    <div><dt>Lattes</dt><dd>&nbsp;</dd></div>
+                    <div><dt>ORCID</dt><dd>&nbsp;</dd></div>
+                  </dl>
+                </div>
+              </article>
+
+              <article class="profileCard">
+                <div class="profilePhoto" aria-label="Espaço para foto de Otanéa Brito de Oliveira"></div>
+                <div>
+                  <p class="eyebrow">Orientada de doutorado</p>
+                  <h2>Otanéa Brito de Oliveira</h2>
+                  <dl class="profileFields">
+                    <div><dt>Instituição</dt><dd>&nbsp;</dd></div>
+                    <div><dt>Unidade / Programa</dt><dd>&nbsp;</dd></div>
+                    <div><dt>E-mail</dt><dd>&nbsp;</dd></div>
+                    <div><dt>Lattes</dt><dd>&nbsp;</dd></div>
+                    <div><dt>ORCID</dt><dd>&nbsp;</dd></div>
+                  </dl>
+                </div>
+              </article>
+            </div>
+          </section>
+        </section>
+      </section>
+    </main>
+
+    <dialog id="detailDialog">
+      <article>
+        <button id="closeDialog" class="close" type="button" aria-label="Fechar">×</button>
+        <div id="detailContent"></div>
+      </article>
+    </dialog>
+
+    <script src="/static/js/app.js"></script>
+  </body>
+</html>

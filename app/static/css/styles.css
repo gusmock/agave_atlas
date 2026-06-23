@@ -1,0 +1,718 @@
+:root {
+  color-scheme: light;
+  --ink: #17201b;
+  --muted: #607067;
+  --line: #d9e1d8;
+  --paper: #fbfcf9;
+  --panel: #ffffff;
+  --green: #2c6e49;
+  --blue: #2f6f8f;
+  --amber: #b7791f;
+  --red: #a0473a;
+  --shadow: 0 16px 50px rgba(25, 40, 31, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  border: 1px solid var(--green);
+  background: var(--green);
+  color: white;
+  min-height: 38px;
+  border-radius: 6px;
+  padding: 0 14px;
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(1.04);
+}
+
+button.ghost {
+  background: transparent;
+  color: var(--green);
+}
+
+.hidden {
+  display: none !important;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px clamp(18px, 4vw, 56px);
+  border-bottom: 1px solid var(--line);
+  background: rgba(251, 252, 249, 0.95);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.brandLockup {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+.unicampLogo {
+  width: clamp(46px, 6vw, 68px);
+  height: auto;
+  flex: 0 0 auto;
+  display: block;
+}
+
+.eyebrow {
+  margin: 0 0 4px;
+  color: var(--blue);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 0;
+  font-size: clamp(1.35rem, 2.4vw, 2.35rem);
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+
+h2 {
+  font-size: 1rem;
+  margin-bottom: 14px;
+}
+
+.session {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.hero {
+  min-height: 310px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+
+.hero img {
+  width: 100%;
+  height: 390px;
+  object-fit: cover;
+  display: block;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(10, 18, 12, 0.18), rgba(251, 252, 249, 0.58));
+}
+
+.heroOverlay {
+  position: absolute;
+  right: clamp(18px, 5vw, 60px);
+  bottom: 26px;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(105px, 1fr));
+  gap: 10px;
+  max-width: min(720px, calc(100% - 36px));
+}
+
+.metric {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  border-radius: 8px;
+  padding: 14px;
+  box-shadow: var(--shadow);
+}
+
+.metric span {
+  display: block;
+  font-size: clamp(1.35rem, 3vw, 2.15rem);
+  font-weight: 800;
+}
+
+.metric small {
+  color: var(--muted);
+}
+
+.workbench {
+  display: grid;
+  grid-template-columns: 290px minmax(0, 1fr);
+  gap: 28px;
+  padding: 26px clamp(18px, 4vw, 56px) 56px;
+}
+
+.filters {
+  align-self: start;
+  display: grid;
+  gap: 16px;
+  position: sticky;
+  top: 95px;
+}
+
+label {
+  display: grid;
+  gap: 7px;
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 650;
+}
+
+input,
+select {
+  width: 100%;
+  min-height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: white;
+  color: var(--ink);
+  padding: 8px 10px;
+}
+
+.loginBox,
+.uploadBox {
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+}
+
+.loginBox form,
+.uploadBox form {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.uploadBox p {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.content {
+  min-width: 0;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.tab {
+  border: 0;
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  color: var(--muted);
+  padding: 0 14px 12px;
+}
+
+.tab.active {
+  color: var(--green);
+  border-color: var(--green);
+}
+
+.view {
+  display: none;
+}
+
+.view.active {
+  display: block;
+}
+
+.atlasGrid,
+.atlasFeatureGrid,
+.intelGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(260px, 0.8fr);
+  gap: 28px;
+}
+
+.atlasFeatureGrid {
+  margin-bottom: 30px;
+  align-items: start;
+}
+
+.worldMapShell {
+  display: grid;
+  gap: 12px;
+}
+
+.worldMapStage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  min-height: 250px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 18% 24%, rgba(255, 255, 255, 0.65), transparent 24%),
+    linear-gradient(180deg, #eff7f4 0%, #dcece6 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.55);
+}
+
+.worldMapStage img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.worldMapMarkers {
+  position: absolute;
+  inset: 0;
+}
+
+.mapMarker {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--size);
+  height: var(--size);
+  min-height: 0;
+  padding: 0;
+  border: 2px solid #ffffff;
+  border-radius: 999px;
+  background: var(--red);
+  box-shadow: 0 4px 14px rgba(40, 45, 42, 0.25);
+  transform: translate(-50%, -50%);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.mapMarker:hover,
+.mapMarker:focus-visible {
+  background: var(--amber);
+  outline: 3px solid rgba(183, 121, 31, 0.22);
+  transform: translate(-50%, -50%) scale(1.08);
+  box-shadow: 0 8px 20px rgba(40, 45, 42, 0.28);
+}
+
+.worldMapLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.mapLegendButton,
+.keywordButton {
+  min-height: 0;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--ink);
+  padding: 6px 10px;
+  font-size: 0.82rem;
+}
+
+.mapLegendButton:hover,
+.keywordButton:hover {
+  border-color: var(--green);
+  color: var(--green);
+  filter: none;
+}
+
+.keywordCloud {
+  min-height: 250px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at top left, rgba(239, 245, 242, 0.95), rgba(255, 255, 255, 0.98) 42%),
+    linear-gradient(180deg, #fdfefd 0%, #f4f8f5 100%);
+  overflow: hidden;
+}
+
+.keywordButton {
+  font-size: var(--font-size);
+  line-height: 1.15;
+}
+
+.keywordCloudStage {
+  position: relative;
+  width: 100%;
+  min-height: 260px;
+}
+
+.keywordCloudWord {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: 0;
+  background: transparent;
+  color: var(--word-color, var(--green));
+  padding: 2px 4px;
+  font-size: var(--font-size);
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  transform: rotate(var(--word-rotate, 0deg));
+  transform-origin: center;
+  transition: transform 0.18s ease, color 0.18s ease, text-shadow 0.18s ease;
+}
+
+.keywordCloudWord:hover,
+.keywordCloudWord:focus-visible {
+  color: var(--red);
+  outline: none;
+  filter: none;
+  text-shadow: 0 6px 14px rgba(41, 54, 48, 0.14);
+  transform: rotate(var(--word-rotate, 0deg)) scale(1.08);
+}
+
+.timeline {
+  margin-top: 28px;
+}
+
+.bars {
+  display: grid;
+  gap: 10px;
+}
+
+.barRow {
+  display: grid;
+  grid-template-columns: minmax(110px, 230px) minmax(0, 1fr) 54px;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+}
+
+.barLabel {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.barTrack {
+  height: 12px;
+  background: #e8eee8;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.barFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--green), var(--blue));
+}
+
+.barCount {
+  color: var(--muted);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.compact .barRow {
+  grid-template-columns: 62px minmax(0, 1fr) 44px;
+}
+
+.yearBars {
+  display: flex;
+  gap: 3px;
+  align-items: end;
+  min-height: 130px;
+  border-bottom: 1px solid var(--line);
+  padding-top: 18px;
+  overflow-x: auto;
+}
+
+.yearBar {
+  min-width: 11px;
+  background: var(--blue);
+  border-radius: 3px 3px 0 0;
+  position: relative;
+}
+
+.yearBar:hover::after {
+  content: attr(data-label);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 6px);
+  transform: translateX(-50%);
+  background: var(--ink);
+  color: white;
+  padding: 4px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 0.78rem;
+}
+
+.resultHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 18px;
+}
+
+.resultHeader span {
+  color: var(--muted);
+}
+
+.documents {
+  display: grid;
+  gap: 12px;
+}
+
+.documentCard {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  padding: 16px;
+  display: grid;
+  gap: 10px;
+}
+
+.documentCard h3 {
+  font-size: 1rem;
+  margin-bottom: 0;
+  line-height: 1.35;
+}
+
+.documentMeta,
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  padding: 4px 8px;
+  font-size: 0.78rem;
+  background: #f7faf6;
+}
+
+.documentCard p {
+  color: var(--muted);
+  line-height: 1.45;
+  margin-bottom: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.documentCard footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+
+.linkButton {
+  border: 0;
+  background: transparent;
+  color: var(--green);
+  padding: 0;
+  min-height: auto;
+  font-weight: 750;
+}
+
+.insightPanel {
+  display: grid;
+  gap: 12px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.aboutGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.profileCard {
+  display: grid;
+  grid-template-columns: 132px minmax(0, 1fr);
+  gap: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  padding: 18px;
+}
+
+.profilePhoto {
+  width: 132px;
+  aspect-ratio: 1;
+  border: 1px dashed #aab8af;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #f8faf7, #e9efec);
+}
+
+.profileFields {
+  display: grid;
+  gap: 9px;
+  margin: 14px 0 0;
+}
+
+.profileFields div {
+  display: grid;
+  grid-template-columns: 130px minmax(0, 1fr);
+  gap: 10px;
+  align-items: baseline;
+}
+
+.profileFields dt {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.profileFields dd {
+  min-height: 1.35rem;
+  margin: 0;
+  border-bottom: 1px solid var(--line);
+}
+
+#detailDialog {
+  width: min(980px, calc(100vw - 28px));
+  max-height: calc(100vh - 40px);
+  border: 0;
+  border-radius: 8px;
+  padding: 0;
+  box-shadow: var(--shadow);
+}
+
+#detailDialog article {
+  padding: 26px;
+  position: relative;
+}
+
+#detailDialog::backdrop {
+  background: rgba(18, 30, 22, 0.45);
+}
+
+.close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 34px;
+  padding: 0;
+}
+
+.detailGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.detailBlock {
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+
+.detailBlock p {
+  color: var(--muted);
+  white-space: pre-wrap;
+  line-height: 1.45;
+}
+
+@media (max-width: 980px) {
+  .heroOverlay {
+    grid-template-columns: repeat(2, minmax(120px, 1fr));
+  }
+
+  .workbench {
+    grid-template-columns: 1fr;
+  }
+
+  .filters {
+    position: static;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .loginBox,
+  .uploadBox {
+    grid-column: 1 / -1;
+  }
+
+  .atlasGrid,
+  .atlasFeatureGrid,
+  .intelGrid,
+  .detailGrid,
+  .aboutGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .topbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .brandLockup {
+    gap: 12px;
+  }
+
+  .unicampLogo {
+    width: 46px;
+  }
+
+  .hero img {
+    height: 460px;
+  }
+
+  .heroOverlay {
+    left: 18px;
+    right: 18px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .filters {
+    grid-template-columns: 1fr;
+  }
+
+  .barRow {
+    grid-template-columns: minmax(86px, 140px) minmax(0, 1fr) 44px;
+  }
+
+  .tabs {
+    overflow-x: auto;
+  }
+
+  .profileCard {
+    grid-template-columns: 1fr;
+  }
+
+  .profilePhoto {
+    width: min(160px, 100%);
+  }
+
+  .profileFields div {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+}

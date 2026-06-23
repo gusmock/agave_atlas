@@ -2,21 +2,17 @@ services:
   - type: web
     name: agave-obs
     runtime: python
-    plan: starter
+    plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: bash scripts/start_render.sh
     healthCheckPath: /health
-    disk:
-      name: agave-obs-data
-      mountPath: /var/data
-      sizeGB: 1
     envVars:
       - key: AGAVE_DEBUG
         value: "false"
       - key: AGAVE_DB_PATH
-        value: /var/data/db/agave_obs.sqlite3
+        value: /tmp/agave_obs.sqlite3
       - key: AGAVE_UPLOAD_DIR
-        value: /var/data/uploads/documents
+        value: /tmp/uploads/documents
       - key: AGAVE_ADMIN_USER
         value: admin
       - key: AGAVE_ADMIN_PASSWORD
